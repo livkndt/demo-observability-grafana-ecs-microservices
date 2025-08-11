@@ -7,7 +7,7 @@ dependencies = [
   "opentelemetry-sdk~=1.26",
   "opentelemetry-exporter-otlp-proto-grpc~=1.26",
   "opentelemetry-instrumentation-fastapi>=0.47b0,<0.48",
-  "opentelemetry-instrumentation-requests>=0.47b0,<0.48"
+  "opentelemetry-instrumentation-requests>=0.47b0,<0.58"
 ]
 packages = [
   { include = "otel_sdk" }
