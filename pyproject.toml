@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "demo-observability-grafana-ecs-microservices"
+dynamic = ["version"]
+description = "Demo of FastAPI microservices with Grafana and ECS"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Olivia Knoedt", email = "livvy@mac.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/livkndt/demo-observability-grafana-ecs-microservices#readme"
+Issues = "https://github.com/livkndt/demo-observability-grafana-ecs-microservices/issues"
+Source = "https://github.com/livkndt/demo-observability-grafana-ecs-microservices"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.version]
+path = "src/demo_observability_grafana_ecs_microservices/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "black",
+  "ruff",
+  "pytest",
+  "httpx",
+  "mypy",
+]
+
+[tool.hatch.envs.default.scripts]
+lint = "ruff check ."
+format = "black ."
+typecheck = "mypy --install-types --non-interactive src/demo_observability_grafana_ecs_microservices tests"
+test = "pytest"
+
+[tool.hatch.envs.types]
+extra-dependencies = ["mypy>=1.0.0"]
+
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/demo_observability_grafana_ecs_microservices tests}"
+
+[tool.coverage.run]
+source_pkgs = ["demo_observability_grafana_ecs_microservices", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/demo_observability_grafana_ecs_microservices/__about__.py",
+]
+
+[tool.coverage.paths]
+demo_observability_grafana_ecs_microservices = [
+  "src/demo_observability_grafana_ecs_microservices",
+  "*/demo-observability-grafana-ecs-microservices/src/demo_observability_grafana_ecs_microservices"
+]
+tests = ["tests", "*/demo-observability-grafana-ecs-microservices/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+

@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/apps/service-a"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/apps/service-b"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/libs/otel_sdk"
+    schedule:
+      interval: "weekly"

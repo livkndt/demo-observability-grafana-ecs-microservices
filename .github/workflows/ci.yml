@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Upgrade pip and install Hatch
+        run: |
+          python -m pip install --upgrade pip
+          pip install hatch
+
+      - name: Create env (otel_sdk)
+        working-directory: libs/otel_sdk
+        run: hatch env create
+
+      - name: Create env (service-b)
+        working-directory: apps/service-b
+        run: hatch env create
+
+      - name: Create env (service-a)
+        working-directory: apps/service-a
+        run: hatch env create

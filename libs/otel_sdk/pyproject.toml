@@ -1,0 +1,24 @@
+[project]
+name = "otel_sdk"
+version = "0.1.0"
+requires-python = ">=3.8,<3.13"
+dependencies = [
+  "opentelemetry-api~=1.26",
+  "opentelemetry-sdk~=1.26",
+  "opentelemetry-exporter-otlp-proto-grpc~=1.26",
+  "opentelemetry-instrumentation-fastapi>=0.47b0,<0.48",
+  "opentelemetry-instrumentation-requests>=0.47b0,<0.48"
+]
+packages = [
+  { include = "otel_sdk" }
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+sources = ["src"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

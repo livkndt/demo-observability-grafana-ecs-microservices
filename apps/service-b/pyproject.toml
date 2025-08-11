@@ -1,0 +1,16 @@
+[project]
+name = "service-b"
+version = "0.1.0"
+description = "Service B"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "fastapi~=0.112",
+    "uvicorn[standard]~=0.30",
+    "otel_sdk @ file:../../libs/otel_sdk"
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.envs.default.scripts]
+start = "PYTHONPATH=src uvicorn service_a.main:app --reload --port 8001"

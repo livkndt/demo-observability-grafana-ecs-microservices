@@ -1,0 +1,66 @@
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+*.egg
+*.egg-info/
+dist/
+build/
+sdist/
+MANIFEST
+
+# Hatch
+.hatch/
+
+# Testing / Coverage / Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.cache/
+
+# Environment files
+.env
+.env.*
+!.env.example
+.envrc
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Terraform
+**/.terraform/
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/*.tfvars
+**/*_override.tf
+**/*_override.tf.json
+crash.log
+override.tf
+override.tf.json
+.terraformrc
+terraform.rc
+
+# Misc
+.python-version
+Thumbs.db
+
