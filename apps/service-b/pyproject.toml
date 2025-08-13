@@ -6,6 +6,7 @@ requires-python = ">=3.11,<3.13"
 dependencies = [
     "fastapi~=0.112",
     "uvicorn[standard]~=0.30",
+    "requests~=2.32",
     "otel_sdk @ file:../../libs/otel_sdk"
 ]
 
@@ -13,4 +14,4 @@ dependencies = [
 allow-direct-references = true
 
 [tool.hatch.envs.default.scripts]
-start = "PYTHONPATH=src uvicorn service_a.main:app --reload --port 8001"
+start = "PYTHONPATH=src uvicorn service_b.main:app --reload --port 8001"
