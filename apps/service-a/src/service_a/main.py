@@ -6,6 +6,7 @@ from otel_sdk import (
 from opentelemetry import trace
 import requests
 import logging
+import os
 
 app = FastAPI()
 instrument_fastapi(app, "service-a")
@@ -27,6 +28,8 @@ def call_service_b():
     with tracer.start_as_current_span("call_service_b") as span:
         span.set_attribute("app.target_service", "service-b")
         span.set_attribute("app.action", "get_world")
-        response = requests.get("http://127.0.0.1:8001/world", timeout=5)
+        # Use service name for container networking
+        service_b_url = os.getenv("SERVICE_B_URL", "http://service-b:8001")
+        response = requests.get(f"{service_b_url}/world", timeout=5)
         b_payload = response.json()
         return {"from_b": b_payload, "trace_id": get_current_trace_id()}

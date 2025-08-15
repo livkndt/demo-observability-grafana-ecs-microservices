@@ -1,10 +1,6 @@
 logging {
-  level = "debug"
+  level = "warn"
   format = "logfmt"
-}
-
-livedebugging {
-  enabled = true
 }
 
 otelcol.receiver.otlp "otlp_receiver" {

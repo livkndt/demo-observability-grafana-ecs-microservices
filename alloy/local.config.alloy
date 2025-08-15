@@ -1,0 +1,39 @@
+logging {
+  level = "debug"
+  format = "logfmt"
+}
+
+livedebugging {
+  enabled = true
+}
+
+otelcol.receiver.otlp "otlp_receiver" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+  http {
+    endpoint = "0.0.0.0:4318"
+  }
+
+  output {
+    logs    = [otelcol.processor.batch.default.input]
+    traces  = [otelcol.processor.batch.default.input]
+  }
+}
+
+otelcol.processor.batch "default" {
+	output {
+		logs    = [otelcol.exporter.otlp.to_lgtm.input]
+		traces  = [otelcol.exporter.otlp.to_lgtm.input]
+	}
+}
+
+otelcol.exporter.otlp "to_lgtm" {
+  client {
+    endpoint = "otel-lgtm:4317"
+
+    tls {
+      insecure = true
+    }
+  }
+}

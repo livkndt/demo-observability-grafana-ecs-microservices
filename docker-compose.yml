@@ -1,10 +1,23 @@
 version: "3.9"
 
 services:
+  otel-lgtm:
+    image: grafana/otel-lgtm
+    volumes:
+      - otel-lgtm-data:/data
+    ports:
+      - "3000:3000" # Grafana UI
+    healthcheck:
+      test: ["CMD", "cat", "/tmp/ready"]
+      interval: 1m
+      timeout: 10s
+      retries: 10
+      start_period: 1m
+
   alloy:
     image: grafana/alloy:v1.10.1
     volumes:
-      - ./config.alloy:/etc/alloy/config.alloy
+      - ./alloy/local.config.alloy:/etc/alloy/config.alloy
     ports:
       - "4317:4317" # OTLP gRPC
       - "4318:4318" # OTLP HTTP
@@ -16,3 +29,6 @@ services:
       - /etc/alloy/config.alloy
     env_file:
       - .env
+
+volumes:
+  otel-lgtm-data:
