@@ -1,0 +1,28 @@
+# Test files
+**/tests/
+**/*_test.py
+**/test_*.py
+
+# Cache and build artifacts
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+**/*.egg-info/
+
+# Development files
+**/.env
+**/.env.*
+!**/.env.example
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Documentation
+**/README.md
+**/docs/

@@ -34,6 +34,9 @@ allow-direct-references = true
 [tool.hatch.version]
 path = "src/demo_observability_grafana_ecs_microservices/__about__.py"
 
+[tool.hatch.workspaces]
+packages = ["apps/*", "libs/*"]
+
 [tool.hatch.envs.default]
 dependencies = [
   "black",

@@ -14,6 +14,10 @@ instrument_fastapi(app, "service-a")
 tracer = trace.get_tracer(__name__)
 logger = logging.getLogger(__name__)
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 @app.get("/hello")
 def read_hello():
     with tracer.start_as_current_span("say_hello"): 
